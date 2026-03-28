@@ -1,18 +1,35 @@
 import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import { useState } from 'react';
 
 export default function App() {
-  return (
-    <View style={styles.appContainer}>
-      <View style={styles.inputContainer}>
-        <TextInput placeholder='Your Course Goal' style={styles.textInput}></TextInput>
-        <Button title='Add Goal'></Button>
-      </View>
-      <View>
-          <Text>List of Course Goals</Text>
-      </View>
+  const [enteredGoalText, setEnteredGoalText] = useState('');
+  const [courseGoals, setCourseGoals] = useState([]);
+
+  function goalInputHandler(enteredText) {
+    setEnteredGoalText(enteredText);
+  }
+
+  function addGoalHandler() {
+    setCourseGoals((currentCourseGoals) => [
+      ...currentCourseGoals,
+      enteredGoalText,
+    ]);
+  }
+
+return (
+  <View style={styles.appContainer}>
+    <View style={styles.inputContainer}>
+      <TextInput placeholder='Your Course Goal' style={styles.textInput} onChangeText={goalInputHandler}></TextInput>
+      <Button title='Add Goal' style={{padding: 50}} onPress={addGoalHandler}></Button>
     </View>
-  );
+    <View style={styles.goalsContainer}>
+        {courseGoals.map((goal) => <Text>{goal}</Text>)}
+    </View>
+  </View>
+);
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -29,38 +46,28 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   appContainer: {
-    padding: 50,
+    flex: 1,
+    paddingTop: 50,
+    paddingHorizontal: 16,
+    padding: 13,
   },
   inputContainer: {
-    display: 'flex',
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-  },  
+    alignItems: 'center',
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: '#cccccc',
+  },
   textInput: {
     borderWidth: 2,
     color: '#cccccc',
-    width: '80%',
+    width: '70%',
     marginRight: 8,
     padding: 3,
-  }
+  },
+  goalsContainer: {
+    flex: 5,
+  },
 });
-
-
-const styles2 = {
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  textStyle: {
-    margin: 16,
-    padding: 16,
-    borderWidth: 2,
-    borderColor: 'red',
-    backgroundColor: 'blue',
-    color: 'white',
-  },
-};
-
