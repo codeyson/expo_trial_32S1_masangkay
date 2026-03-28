@@ -14,21 +14,21 @@ export default function App() {
       ...currentCourseGoals,
       enteredGoalText,
     ]);
+    setEnteredGoalText('');
   }
 
 return (
   <View style={styles.appContainer}>
     <View style={styles.inputContainer}>
-      <TextInput placeholder='Your Course Goal' style={styles.textInput} onChangeText={goalInputHandler}></TextInput>
-      <Button title='Add Goal' style={{padding: 50}} onPress={addGoalHandler}></Button>
+      <TextInput placeholder='Your Course Goal' style={styles.textInput} onChangeText={goalInputHandler} value={enteredGoalText}></TextInput>
+      <Button title='Add Goal' style={{padding: 50}} onPress={addGoalHandler} ></Button>
     </View>
     <View style={styles.goalsContainer}>
-        {courseGoals.map((goal) => <Text>{goal}</Text>)}
+        {courseGoals.map((goal) => <Text style={styles.textStyle} >{goal}</Text>)}
     </View>
   </View>
 );
 }
-
 
 
 const styles = StyleSheet.create({
@@ -39,17 +39,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyle: {
-    margin: 16, 
-    borderWidth: 2, 
-    borderColor: 'red', 
+    margin: 16,
+    borderWidth: 5,
+    borderColor: '#eab308',
     padding: 16,
-    backgroundColor: 'blue',
+    backgroundColor: '#8e8e95',
+    borderRadius: 8,
+    color: '#fafafa',
+    textAlign: 'center',
+    fontWeight: 'bold',
   },
   appContainer: {
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
     padding: 13,
+    backgroundColor: '#e1e1e1',
+  
   },
   inputContainer: {
     flex: 1,
@@ -57,17 +63,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: '#cccccc',
+    borderBottomWidth: 2,
+    borderBottomColor: '#000000',
   },
   textInput: {
     borderWidth: 2,
-    color: '#cccccc',
-    width: '70%',
-    marginRight: 8,
-    padding: 3,
+    color: '#000000',
+    width: '100%',
+    marginRight: 15,
+    padding: 10,
+    borderRadius: 15,
   },
   goalsContainer: {
-    flex: 5,
+    flex: 10,
   },
 });
