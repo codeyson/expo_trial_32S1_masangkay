@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList} from 'react-native';
 import { useState } from 'react';
 import GoalItem from './components/GoalItem';
+import GoalInput from './components/GoalInput';
+import GoalList from './components/GoalList';
 
 export default function App() {
   const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -10,27 +12,19 @@ export default function App() {
     setEnteredGoalText(enteredText);
   }
 
-  function addGoalHandler() {
+  function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
       { text: enteredGoalText, key: Math.random().toString() },
     ]);
-    setEnteredGoalText('');
   }
 
 return (
   <View style={styles.container}>
-    <View style={styles.inputContainer}>
-      <TextInput placeholder='Your Course Goal' style={styles.textInput} onChangeText={goalInputHandler} value={enteredGoalText}></TextInput>
-      <Button title='Add Goal' style={{padding: 50}} onPress={addGoalHandler} ></Button>
-    </View>
+    <GoalInput onAddGoal={addGoalHandler} onChangeText={goalInputHandler} value={enteredGoalText}/>
     <View style={styles.goalsContainer}>
       <View style={styles.goalListContainer}>
-      <FlatList data={courseGoals} renderItem={(itemData) => {
-        return(
-          <GoalItem/>
-        )
-      }} />
+      <GoalList goals={courseGoals} />
       </View>
     </View>
   </View>
