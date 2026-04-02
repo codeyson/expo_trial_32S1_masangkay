@@ -1,5 +1,7 @@
-import { View, TextInput, Button, StyleSheet, Pressable, Text} from "react-native"
+import { View, TextInput, Button, StyleSheet, Pressable, Text, Modal} from "react-native"
 import { useState } from "react";
+import { Ionicons } from "@expo/vector-icons";
+
 function GoalInput(props) {
     const [enteredGoalText, setEnteredGoalText] = useState('');
     function textInputHandler(enteredText) {
@@ -11,21 +13,11 @@ function GoalInput(props) {
     }
     return(
         <View style={styles.inputContainer}>
+          <View>
+            <Ionicons name="person" size={30} color="black" />
+          </View>
               <TextInput placeholder='Your Course Goal' style={styles.textInput} onChangeText={textInputHandler} value={enteredGoalText}></TextInput>
-              <Pressable onPress={addGoalHandler}   
-                onPressIn={() => console.log("Pressed in")}
-                onPressOut={() => console.log("Pressed out")}
-                onLongPress={() => console.log("Long press")}
-                delayLongPress={500}
-              >
-
-              </Pressable>
-              <Pressable
-                hitSlop={200}
-                onPress={() => console.log("Pressed")}
-              >
-                <Text>bigger area</Text>
-              </Pressable>
+              <Button title="Add Goal" onPress={addGoalHandler} />
         </View>
     );
 }

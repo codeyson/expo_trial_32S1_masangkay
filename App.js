@@ -19,12 +19,19 @@ export default function App() {
     ]);
   }
 
+
+  function deleteGoalHandler(id) {
+    setCourseGoals((currentGoals) =>
+      currentGoals.filter((goal) => goal.id !== id)
+    );
+  }
+
 return (
   <View style={styles.container}>
     <GoalInput onAddGoal={addGoalHandler} onChangeText={goalInputHandler} value={enteredGoalText}/>
     <View style={styles.goalsContainer}>
       <View style={styles.goalListContainer}>
-      <GoalList goals={courseGoals} />
+      <GoalList goals={courseGoals} onDeleteItem={deleteGoalHandler} />
       </View>
     </View>
   </View>

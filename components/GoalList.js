@@ -6,8 +6,13 @@ function GoalList(props) {
     <View style={styles.listContainer}>
       <FlatList
         data={props.goals}
+        keyExtractor={(item) => item.id}  
         renderItem={(itemData) => (
-          <GoalItem text={itemData.item.text} />
+          <GoalItem 
+            text={itemData.item.text} 
+            id={itemData.item.id}
+            onDeleteItem={props.onDeleteItem}
+          />
         )}
       />
     </View>
