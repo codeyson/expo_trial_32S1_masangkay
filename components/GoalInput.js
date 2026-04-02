@@ -1,4 +1,4 @@
-import { View, TextInput, Button, StyleSheet} from "react-native"
+import { View, TextInput, Button, StyleSheet, Pressable, Text} from "react-native"
 import { useState } from "react";
 function GoalInput(props) {
     const [enteredGoalText, setEnteredGoalText] = useState('');
@@ -12,7 +12,20 @@ function GoalInput(props) {
     return(
         <View style={styles.inputContainer}>
               <TextInput placeholder='Your Course Goal' style={styles.textInput} onChangeText={textInputHandler} value={enteredGoalText}></TextInput>
-              <Button title='Add Goal'  onPress={addGoalHandler} ></Button>
+              <Pressable onPress={addGoalHandler}   
+                onPressIn={() => console.log("Pressed in")}
+                onPressOut={() => console.log("Pressed out")}
+                onLongPress={() => console.log("Long press")}
+                delayLongPress={500}
+              >
+
+              </Pressable>
+              <Pressable
+                hitSlop={200}
+                onPress={() => console.log("Pressed")}
+              >
+                <Text>bigger area</Text>
+              </Pressable>
         </View>
     );
 }
