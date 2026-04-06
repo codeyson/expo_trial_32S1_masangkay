@@ -15,6 +15,7 @@ function GoalList(props) {
           />
         )}
       />
+      
     </View>
   );
 }
@@ -23,7 +24,7 @@ export default GoalList;
 
 const styles = StyleSheet.create({
   listContainer: {
-    height: 200,
+    flex: 1,
     width: '100%',
   },
 });

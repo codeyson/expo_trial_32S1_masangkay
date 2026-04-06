@@ -15,7 +15,7 @@ export default function App() {
   function addGoalHandler(enteredGoalText) {
     setCourseGoals((currentCourseGoals) => [
       ...currentCourseGoals,
-      { text: enteredGoalText, key: Math.random().toString() },
+      { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
 
@@ -28,7 +28,7 @@ export default function App() {
 
 return (
   <View style={styles.container}>
-    <GoalInput onAddGoal={addGoalHandler} onChangeText={goalInputHandler} value={enteredGoalText}/>
+    <GoalInput onAddGoal={addGoalHandler} onChangeText={goalInputHandler} goalsCount={courseGoals.length} value={enteredGoalText}/>
     <View style={styles.goalsContainer}>
       <View style={styles.goalListContainer}>
       <GoalList goals={courseGoals} onDeleteItem={deleteGoalHandler} />
